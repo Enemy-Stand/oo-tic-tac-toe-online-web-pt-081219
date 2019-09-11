@@ -1,3 +1,5 @@
+require "pry"
+
 class TicTacToe
   def initialize(board = nil)
     @board = board || Array.new(9, " ")
@@ -27,17 +29,23 @@ class TicTacToe
     user_input.to_i-1
   end
   
-  def move(index, user_input)
-    user_input = board[index]
-    user_input.to_index
+  def move(index, user_input = "X")
+    @board[index] = user_input
   end
   
-  def position_taken?(board, i)
-    if (board[i] == " ") || (board[i] == "") || (board[i] == nil)
+  def position_taken?(index)
+    if (@board[index] == " ") || (@board[index] == "") || (@board[index] == nil)
       return false
     else
       return true
     end
   end
-    
+  
+  def valid_move?(index)
+    if index.between?(0,8) && !position_taken?(index)
+      return true
+    else
+      return false || nil
+    end
+  end
 end
