@@ -1,5 +1,3 @@
-require "pry"
-
 class TicTacToe
   def initialize(board = nil)
     @board = board || Array.new(9, " ")
@@ -29,8 +27,8 @@ class TicTacToe
     user_input.to_i-1
   end
   
-  def move(index, user_input = "X")
-    @board[index] = user_input
+  def move(index, token)
+    @board[index] = token
   end
   
   def position_taken?(index)
@@ -48,4 +46,48 @@ class TicTacToe
       return false || nil
     end
   end
+  
+  def turn_count
+    counter = 0
+    @board.each do |space|
+      if space == "X" || space == "O"
+        counter += 1
+      end
+    end
+    return counter
+  end
+  
+  def current_player
+    if turn_count%2 == 0
+      current_player = "X"
+    else
+      current_player = "O"
+    end
+    current_player
+  end
+  
+  def turn
+    puts "Enter a number between 1-9"
+    user_input = gets.strip
+    user_input.to_i-1
+    index = input_to_index(user_input)
+    token = current_player
+    if valid_move?(index)
+      move(index, token)
+    else
+      puts "Invalid move, try aagain"
+      turn
+    end
+    display_board
+  end
+  
+  def check_win_combination?(current_player, win_combo)
+    win_combo.all? do |position|
+      @board[position] == current_player
+    end
+  end
+  
+  # def won?
+  #   WIN_COMBINATIONS.each do |win_combo|
+    
 end
