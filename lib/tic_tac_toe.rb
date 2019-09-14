@@ -81,13 +81,20 @@ class TicTacToe
     display_board
   end
   
-  def check_win_combination?(current_player, win_combo)
-    win_combo.all? do |position|
-      @board[position] == current_player
+  # def check_win_combination?(current_player, win_combo)
+  #   win_combo.all? do |position|
+  #     @board[position] == current_player
+  #   end
+  # end
+  
+  def won?
+    WIN_COMBINATIONS.each do |win_combo|
+      if position_taken?(win_combo[0])
+        if @board[win_combo[0]] == @board[win_combo[1]] && @board[win_combo[1]] == @board[win_combo[2]]
+        return win_combo
+        end
+      end
     end
   end
-  
-  # def won?
-  #   WIN_COMBINATIONS.each do |win_combo|
     
 end
