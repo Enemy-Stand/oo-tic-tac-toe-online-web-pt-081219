@@ -43,7 +43,7 @@ class TicTacToe
     if index.between?(0,8) && !position_taken?(index)
       return true
     else
-      return false || nil
+      return false
     end
   end
   
@@ -68,10 +68,10 @@ class TicTacToe
   def turn
     puts "Enter a number between 1-9"
     user_input = gets.strip
-    user_input.to_i-1
     index = input_to_index(user_input)
     token = current_player
     if valid_move?(index)
+      #binding.pry
       move(index, token)
     else
       puts "Invalid move, try aagain"
@@ -79,12 +79,6 @@ class TicTacToe
     end
     display_board
   end
-  
-  # def check_win_combination?(current_player, win_combo)
-  #   win_combo.all? do |position|
-  #     @board[position] == current_player
-  #   end
-  # end
   
   def won?
     WIN_COMBINATIONS.each do |win_combo|
@@ -108,7 +102,7 @@ class TicTacToe
   end
   
   def over?
-    full? || won?
+    full? || won? || draw?
   end
   
   def winner
@@ -127,7 +121,7 @@ class TicTacToe
   
   def play
     until over?
-    turn
+      turn
     end
     if winner
       puts "Congratulations #{winner}!"
