@@ -73,7 +73,7 @@ class TicTacToe
     index = input_to_index(user_input)
     token = current_player
     if valid_move?(index)
-      binding.pry
+      #binding.pry
       move(index, token)
     else
       puts "Invalid move, try aagain"
