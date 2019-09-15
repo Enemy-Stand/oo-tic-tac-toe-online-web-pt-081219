@@ -1,5 +1,3 @@
-require 'pry'
-
 class TicTacToe
   def initialize(board = nil)
     @board = board || Array.new(9, " ")
@@ -81,12 +79,6 @@ class TicTacToe
     end
     display_board
   end
-  
-  # def check_win_combination?(current_player, win_combo)
-  #   win_combo.all? do |position|
-  #     @board[position] == current_player
-  #   end
-  # end
   
   def won?
     WIN_COMBINATIONS.each do |win_combo|
