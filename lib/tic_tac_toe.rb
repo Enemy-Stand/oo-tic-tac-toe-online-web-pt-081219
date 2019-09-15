@@ -45,7 +45,7 @@ class TicTacToe
     if index.between?(0,8) && !position_taken?(index)
       return true
     else
-      return false || nil
+      return false
     end
   end
   
@@ -72,9 +72,9 @@ class TicTacToe
     user_input = gets.strip
     index = input_to_index(user_input)
     token = current_player
-    binding.pry
     if valid_move?(index)
       move(index, token)
+      binding.pry
     else
       puts "Invalid move, try aagain"
       turn
